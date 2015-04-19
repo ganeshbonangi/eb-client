@@ -1,0 +1,85 @@
+<div class='row'>
+	<!-- <h1 class='col-sm-12'>Boom Exams</h1> -->
+	<!-- <form name="examForm"> -->
+	<div class='col-sm-12 form-group'>
+		<label>
+			Exam name
+		</label>
+		<div>
+			<input class='formcontrolle form-control' type="text" ng-model ="exam.name" placeholder="Exam Name"/>
+		</div>
+	</div>
+	<hr>
+	<div class='col-sm-12 form-group'>
+		<label>Exam Sections</label>
+		<table ng-table class="table">
+			<tr ng-repeat ="section in exam.sections track by $index" >
+				<td><input class='form-control' type="text" ng-model="exam.sections[$index]" placeholder="Section Name"/></td>
+				<td><a class="glyphicon glyphicon-trash trash pull-right" ng-click="removingTheSection(this)"></a></td>
+			</tr>
+		</table>
+	</div>
+	<div class='col-sm-12 form-group'>
+		<button class='btn btn-success pull-right' ng-click="addingAnewSection()">add new section</button>
+	</div>
+	<hr>
+	<div class='col-sm-12 form-group'>
+	<label>Students</label>
+	<table ng-table class="table">
+		<tr ng-repeat ="students in exam.students track by $index" >
+			<td><input class='form-control' type="text" ng-model="exam.students[$index]" placeholder="student Name"/></td>
+			<td><a class="glyphicon glyphicon-trash trash pull-right" ng-click="removingTheStudent(this)"></a></td>
+		</tr>
+	</table>
+	</div>
+	<div class='col-sm-12 form-group'>
+		<button class='btn btn-success pull-right' ng-click="addingAnewStudent()">add new student</button>
+	</div>
+	<hr>
+	<div class='col-sm-12 form-group'>
+<label>Start Date</label>
+     <div class="form-group">
+        <div>
+            <p class="input-group">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="exam.startDate" is-open="startDateOpen" name="examStartDate" datepicker-options="dateOptions"  min="{{today}}" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,'start')"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div> 
+     </div>
+
+</div>
+<div class='col-sm-12 form-group'>
+    <label>End Date</label>
+     <div class="form-group">
+ 
+        <div>
+            <p class="input-group">
+              <input type="text" class="form-control" name="examEndDate" datepicker-popup="{{format}}" ng-model="exam.endDate" is-open="endDateOpen"  datepicker-options="dateOptions"  />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event,'end')"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+    </div>
+	</div>
+	<hr>
+	<div class='col-sm-12 form-group'>
+		<label>Time of Exam</label>
+		<timepicker ng-model="exam.timeOfExam" hour-step="hstep" minute-step="mstep" show-meridian="isStartMeridian"></timepicker>
+	</div>
+	<hr>
+	<div class='col-sm-12 form-group'>
+		<label>Negative marking for one mark</label>  
+		<div>
+			<input type="text" class="form-control" ng-model="exam.nagativeMarking"/>
+		</div>
+	</div>
+	<hr>
+	<div class='col-sm-12 form-group'>
+		<button  class="btn btn-success pull-right" ng-show="upDateTheExamVar" ng-click="updateTheExam()">Update this exam</button>
+	</div>	
+<!-- </form> -->
+
+</div>

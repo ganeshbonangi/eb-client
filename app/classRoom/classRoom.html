@@ -1,0 +1,55 @@
+<div class="row">
+	<!-- <form name="classRoomForm"> -->
+	<div class='col-sm-12  form-group'>
+		<label>
+			Class room name
+		</label>
+		<div>
+			<input class='formcontrolle form-control' type="text" ng-model ="classRoom.name" />
+		</div>
+	</div>
+	<div class='col-sm-12  form-group'>
+		<label>
+			Students to be enrolled
+		</label>
+		<table ng-table class="table ">
+			<tr ng-repeat ="student in classRoom.students track by $index" >
+				<td><input class='form-control' type="text" ng-model="classRoom.students[$index]"  placeholder="Mobile Number"/></td>
+				<td><a class="glyphicon glyphicon-trash trash pull-right" ng-click="removingTheStudent(this)"></a></td>
+			</tr>
+		</table>
+	</div>
+	<div class='col-sm-12  form-group'><button class='btn btn-success pull-right' ng-click="classRoom.students.push('')">add new student</button></div>
+	<div class='col-sm-12  form-group'>
+		<label>Start Date</label>
+	     <div class="form-group">
+	        <div>
+	            <p class="input-group">
+	              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="classRoom.startDate" is-open="classStartDateOpen" name="classRoomStartDate" datepicker-options="dateOptions"  min="{{today}}" />
+	              <span class="input-group-btn">
+	                <button type="button" class="btn btn-default" ng-click="ClassRoomOpen($event,'start')"><i class="glyphicon glyphicon-calendar"></i></button>
+	              </span>
+	            </p>
+	        </div> 
+	     </div>
+
+	</div>
+<div class='col-sm-12  form-group '>
+    <label>End Date</label>
+     <div class="form-group">
+ 
+        <div>
+            <p class="input-group">
+              <input type="text" class="form-control" name="classRoomEndDate" datepicker-popup="{{format}}" ng-model="classRoom.endDate" is-open="classEndDateOpen"  datepicker-options="dateOptions"  />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="ClassRoomOpen($event,'end')"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+    </div>
+   </div>
+   <div class='col-sm-12  form-group'>
+	<button class="btn btn-success pull-right" ng-show="updateClassRoomVar" ng-click="updateClassRoom()">Update this class room</button>
+   </div>
+<!-- </form>	 -->
+	</div>

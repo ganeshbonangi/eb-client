@@ -1,0 +1,37 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+<h3>Users </h3>
+<accordion close-others="true">
+	<accordion-group ng-repeat="user in users" ng-show="user.role!=='admin'" ><!-- is-open="" -->
+		<accordion-heading>
+	        <strong>{{user.name}}</strong><br>
+	        <span class="text-muted">{{user.email}}</span>
+	        <a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+        </accordion-heading>
+        <!--this is the edit form of the user details-->
+        <div class="form-group">
+          <label>Name
+          	<input type="text" name="name" class="form-control" ng-model="user.name" required/>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>email
+          	<input type="text" name="email" class="form-control" ng-model="user.email" required/>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Organization
+          	<input type="text" name="inst" class="form-control" ng-model="user.inst" required/>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Organization
+          	<input type="text" name="mobile" class="form-control" ng-model="user.mobile" required/>
+          </label>
+        </div>
+        <button ng-click="updateUserData(user)" class="btn btn-success">Update</button>
+        <button ng-click="cancle(user)" class="btn btn-default">Cancle</button>
+	</accordion-group>
+</accordion>
+</div>

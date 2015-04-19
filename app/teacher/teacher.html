@@ -1,0 +1,35 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+	<div class='row'>
+		<accordion close-others="true">
+			<accordion-group ng-repeat="examObject in examSetupObject track by $index" ng-show="user.role!=='admin'" >
+	 		<accordion-heading>
+	 			<strong>{{examObject.name}}</strong><br>
+		        <span class="text-muted"><strong>From:</strong>{{examObject.startDate}}  <strong>To:</strong> {{examObject.endDate}}</span>
+		        <a ng-click="deleteExam(examObject)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+			</accordion-heading> 
+				<exam-setup examobject='{{examObject}}'></exam-setup>
+			</accordion-group>
+		</accordion>
+	</div>
+	<div class='row'>
+		<button class="btn btn-success pull-right" ng-click="addNewExam('lg')">Add new exam</button>
+	</div>
+	<hr>
+	<div class='row'>
+		<accordion close-others="true">
+			<accordion-group ng-repeat="classObject in classRoomObjectData track by $index" ng-show="user.role!=='admin'" >
+	 		<accordion-heading>
+	 			<strong>{{classObject.name}}</strong><br>
+		        <span class="text-muted"><strong>From:</strong>  {{classObject.startDate }} <strong>To:</strong> {{classObject.endDate}}</span>
+		        <a ng-click="deleteClassRoom(classObject)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+			</accordion-heading> 
+				<class-room classobject='{{classObject}}'></class-room>
+			</accordion-group>
+		</accordion>
+	</div>
+	<div class='row'>
+		<button class="btn btn-success pull-right" ng-click="addNewClass('lg')">Create new Class Room</button>
+	</div>
+</div>
