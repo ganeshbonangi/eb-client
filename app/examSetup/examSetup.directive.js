@@ -6,8 +6,9 @@ angular.module('exambuilderApp')
       templateUrl: 'app/examSetup/examSetup.html',
       restrict: 'EA',
       link: function (scope, element, attrs) {
-        if(attrs.examobject){
+       /* if(attrs.examobject){
           scope.exam =  JSON.parse(attrs.examobject); 
+          var initialExamValue = scope.exam;
           scope.upDateTheExamVar = true;
         }else{
             scope.exam = {
@@ -19,13 +20,16 @@ angular.module('exambuilderApp')
               'sections': [],
               'nagativeMarking': ''
             };
-        }
+        }*/
        
       },
+      scope:{exam:'='},
       controller: function($scope){
-      	$scope.exam = {};
+ /*     	$scope.exam = {};
         $scope.exam.sections = [];
-        $scope.exam.students = [];
+        $scope.exam.students = [];*/
+        $scope.upDateTheExamVar = true;
+        var initialExamValue = angular.copy($scope.exam);
         $scope.hstep = 1;
         $scope.mstep = 1;
         $scope.format = "dd-MMM-yyyy";
@@ -34,7 +38,11 @@ angular.module('exambuilderApp')
           if (index !== -1) {
                 $scope.exam.sections.splice(index, 1);
           }
-        };      
+        }; 
+        $scope.revertingBack = function(){
+           console.log(initialExamValue)
+           $scope.exam = initialExamValue;
+        } ;    
          $scope.removingTheStudent = function(row){
           var index = row.$index;
           if (index !== -1) {

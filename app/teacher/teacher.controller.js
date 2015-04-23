@@ -12,7 +12,8 @@ angular.module('exambuilderApp')
 	Exam.getExams().success(function(exams){
 		$scope.examSetupObject =exams;
 	});*/
-	$scope.deleteClassRoom = function(classObject){
+	$scope.deleteClassRoom = function(event,classObject){
+    event.stopPropagation();
 		ClassRoom.deleteClassRoom(classObject).success(function(){
 			angular.forEach($scope.classRoomObjectData, function(u, i) {
 		        if (u === classObject) {
@@ -22,7 +23,8 @@ angular.module('exambuilderApp')
 		});
 	};
 
-	$scope.deleteExam = function(examObject){
+	$scope.deleteExam = function(event,examObject){
+    event.stopPropagation();
 		Exam.deleteExam(examObject).success(function(){
 			console.log("deleted success fully....");
 			 angular.forEach($scope.examSetupObject, function(u, i) {

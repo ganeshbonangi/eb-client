@@ -7,9 +7,9 @@
 	 		<accordion-heading>
 	 			<strong>{{examObject.name}}</strong><br>
 		        <span class="text-muted"><strong>From:</strong>{{examObject.startDate}}  <strong>To:</strong> {{examObject.endDate}}</span>
-		        <a ng-click="deleteExam(examObject)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+		        <a ng-click="deleteExam($event,examObject)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
 			</accordion-heading> 
-				<exam-setup examobject='{{examObject}}'></exam-setup>
+				<exam-setup exam='examObject'></exam-setup>
 			</accordion-group>
 		</accordion>
 	</div>
@@ -23,9 +23,9 @@
 	 		<accordion-heading>
 	 			<strong>{{classObject.name}}</strong><br>
 		        <span class="text-muted"><strong>From:</strong>  {{classObject.startDate }} <strong>To:</strong> {{classObject.endDate}}</span>
-		        <a ng-click="deleteClassRoom(classObject)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
+		        <a ng-click="deleteClassRoom($event,classObject)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
 			</accordion-heading> 
-				<class-room classobject='{{classObject}}'></class-room>
+				<class-room classobject='classObject'></class-room>
 			</accordion-group>
 		</accordion>
 	</div>

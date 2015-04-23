@@ -7,22 +7,25 @@ angular.module('exambuilderApp')
       restrict: 'EA',
       templateUrl: 'app/classRoom/classRoom.html',
       link: function (scope, element, attrs) {
-        if(attrs.classobject)
+       /* if(attrs.classobject)
         {
           scope.classRoom = JSON.parse(attrs.classobject);
+          scope.initialClassRoomValue = scope.classRoom;
           scope.updateClassRoomVar = true;
         }else{
           scope.classRoom = {
               'name': '',
-              'students': [],
+         Obj     'students': [],
               'startDate': '',
               'endDate': ''
           };
-        }
+        }*/
         
       },
-      controller: function($scope,$element,$attrs,ClassRoom){
-      	$scope.classRoom = {};
+      scope:{classobject:'='},
+      controller: function($scope){
+      	//$scope.classRoom = {};
+        var initialclassobjectValue = angular.copy($scope.classobject);
         $scope.format = "dd-MMM-yyyy";
   /*      $scope.classRoom = {
         "name": "ClassRoom21344",
@@ -33,17 +36,22 @@ angular.module('exambuilderApp')
             "std211112"
         ]
       }*/
-        
+        $scope.revertClassobjectValue = function(){
+
+          $scope.classobject = initialclassobjectValue;
+          console.log(initialclassobjectValue);
+
+        };
         $scope.removingTheStudent = function(row){
           var index = row.$index;
           if (index !== -1) {
-                $scope.classRoom.students.splice(index, 1);
+                $scope.classobject.students.splice(index, 1);
           }
         };
 
         $scope.clear = function () {
-          $scope.classRoom.startDate = null;
-          $scope.classRoom.endDate = null;
+          $scope.classobject.startDate = null;
+          $scope.classobject.endDate = null;
         };
 
         // Disable weekend selection
@@ -89,10 +97,10 @@ angular.module('exambuilderApp')
        };*/
        $scope.updateClassRoom= function(){
           var objectOfClassRoom = {};
-          objectOfClassRoom.name = $scope.classRoom.name;
-          objectOfClassRoom.startDate=$scope.classRoom.startDate;
-          objectOfClassRoom.endDate=$scope.classRoom.endDate;
-          objectOfClassRoom.students=$scope.classRoom.students;
+          objectOfClassRoom.name = $scope.classobject.name;
+          objectOfClassRoom.startDate=$scope.classobject.startDate;
+          objectOfClassRoom.endDate=$scope.classobject.endDate;
+          objectOfClassRoom.students=$scope.classobject.students;
        };
       }
     };
